@@ -73,3 +73,16 @@ def do_deploy(archive_path):
         return True
     except:
         return False
+
+
+def deploy():
+    """ Call the do_pack() function and store the path of the created archive
+    Return False if no archive has been created
+    Call the do_deploy(archive_path) function, using the new path of the
+    new archive
+    Return the return value of do_deploy
+    """
+    stored_path = do_pack()
+    if not stored_path:
+        return False
+    return do_deploy(stored_path)
