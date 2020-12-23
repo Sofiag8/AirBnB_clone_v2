@@ -9,6 +9,11 @@ sudo ufw allow 'Nginx HTTP'
 # Then create needed directories in case they don't already exist
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/
+sudo mkdir -p /data/web_static/
+sudo mkdir -p /data/web_static/releases/
+sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/
 
 # Fake HTML file to test configuration
 echo '<html>
