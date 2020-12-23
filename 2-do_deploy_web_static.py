@@ -7,8 +7,9 @@ the function do_deploy
 from fabric.api import *
 from os import path
 from fabric.api import run, put
+
+
 env.hosts = ['35.196.158.6', '35.227.106.6']
-env.password = 'betty'
 
 def do_deploy(archive_path):
     """
@@ -32,7 +33,7 @@ def do_deploy(archive_path):
         #  uncompress archive to specific folder using the "-C" option
         #  tar -xvzf abc.tar.gz -C /opt/folder/
         #  tar compresses multiple files
-        run("tar -xvzf /tmp/{} -C {}".format(file_name,
+        run("tar -xzf /tmp/{} -C {}".format(file_name,
                                                  folder_to_compress))
         #  Delete the archive from the web server
         run("rm /tmp/{}".format(file_name))
