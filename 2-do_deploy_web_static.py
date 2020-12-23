@@ -11,6 +11,7 @@ from fabric.api import run, put
 
 env.hosts = ['35.196.158.6', '35.227.106.6']
 
+
 def do_deploy(archive_path):
     """
     Returns False if the file at the path archive_path
@@ -24,8 +25,8 @@ def do_deploy(archive_path):
         file_name = archive_path.split("/")[-1]
         # set var for path to uncomp and set only the compressed
         # file without the extension, divided by "." and first[0] pos.
-        folder_to_compress = ("/data/web_static/releases/"
-                              + file_name.split(".")[0])
+        folder_to_compress = ("/data/web_static/releases/" +
+                              file_name.split(".")[0])
         #  uploading the archive_path to tmp on the server"""
         put(archive_path, "/tmp/")
         #  run is used to execute a shell command on remote servers
@@ -34,11 +35,11 @@ def do_deploy(archive_path):
         #  tar -xvzf abc.tar.gz -C /opt/folder/
         #  tar compresses multiple files
         run("tar -xzf /tmp/{} -C {}".format(file_name,
-                                                 folder_to_compress))
+                                            folder_to_compress))
         #  Delete the archive from the web server
         run("rm /tmp/{}".format(file_name))
         run("mv {}/web_static/* {}/".format(folder_to_compress,
-                                                 folder_to_compress))
+                                            folder_to_compress))
         run("rm -rf {}/web_static".format(folder_to_compress))
         #  delete symbolic link
         run("rm -rf /data/web_static/current")
