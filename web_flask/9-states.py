@@ -23,6 +23,7 @@ def states():
     states = storage.all(State)
     return render_template('9-states.html', states=states, mode="none")
 
+
 @app.route('/states/<id>', strict_slashes=False)
 def states_by_id(id):
     """ list the cities in a state found by its id """
