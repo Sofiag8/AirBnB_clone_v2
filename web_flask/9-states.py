@@ -20,19 +20,19 @@ def close(self):
 @app.route('/states', strict_slashes=False)
 def states():
     """ list states present in DBStorage sorted A-Z """
-    states = storage.all(State)
-    return render_template('9-states.html', states=states, mode="none")
+    states_all = storage.all(State)
+    return render_template('9-states.html', states=states_all, mode="none")
 
 
 @app.route('/states/<id>', strict_slashes=False)
 def states_by_id(id):
     """ list the cities in a state found by its id """
-    states = storage.all(State)
-    for state in states.values():
+    states_all = storage.all(State)
+    for state in states_all.values():
         if state.id == id:
             return render_template('9-states.html', state=state, mode="id")
-        else:
-            return render_tmeplate('9-states.html', states=states, mode="not")
+    else:
+        return render_template('9-states.html', states=states_all, mode="not")
 
 
 if __name__ == '__main__':
